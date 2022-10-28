@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản Lý Sinh Viên</title>
+    <style>
+        table, th, td {
+            border: 1px solid chocolate;
+        }
+        table {
+            border-collapse: collapse;
+            border: 1px solid chocolate;
+
+        }
+        tr:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+        #nam12 {
+            background-color: cadetblue;
+        }
+        footer {
+            background-color: #b2d2f1;
+            text-align: center;
+            padding: 18px;
+            font-size: 18px;
+            /*float: left;*/
+        }
+        #nam {
+            width: 150%;
+            height: 180px;
+        }
+    </style>
+</head>
+<body>
+<marquee style="color:#110505 ; background-color: #acd9ea">Địa chỉ: Số 18 Phố Viên - Phường Đức Thắng - Q. Bắc Từ Liêm -
+    Hà Nội
+    Điện thoại: (+84-24) 3838 9633 | Email: hanhchinhtonghop@humg.edu.vn
+</marquee>
+<img src="nam.png" id="nam " style="width: 100%" onclick="tuan()">
+<div style="float: right"><button onclick="linh()" style="background-color: deepskyblue;">Đăng xuất</button></div>
+<h1 style="text-align: center; background-color: #ffffff; font-size: 30px">Thông tin sinh viên</h1>
+<br>
+<!---->
+<table style=" border: 1px solid black; width: 700px; float: right;">
+    <tr>
+        <th style="font-size: 28px" colspan="7" id="nam12">Danh sách học viên</th>
+    </tr>
+    <tr>
+        <th>ID</th>
+        <th>Họ Tên</th>
+        <th>Ngày sinh</th>
+        <th>Giới tính</th>
+        <th>Lớp</th>
+        <th>IMG</th>
+        <th>Sửa/Xóa</th>
+
+    </tr>
+    <tbody id="ca">
+    </tbody>
+</table>
+<!---->
+<table border="1" style="width: 500px; height: 300px">
+    <tr>
+        <th colspan="2" style="background-color:cadetblue "> Thông tin học viên</th>
+    </tr>
+    <tr>
+        <th>ID</th>
+        <td style="text-align: center"><input type="number" id="unput1" min="" placeholder="1"></td>
+    </tr>
+    <tr>
+        <th>Họ tên</th>
+        <td style="text-align: center"><input type="text" id="unput2"placeholder="Trần Tiến Mạnh"></td>
+
+    </tr>
+    <tr>
+        <th>Ngày sinh</th>
+        <td style="text-align: center"><input type="date" id="unput3" style="width: 170px"></td>
+
+    </tr>
+    <tr style="text-align: center">
+        <th>Giới tính</th>
+        <td><select id="unput4" style="width: 175px;">
+            <option>Nam</option>
+            <option>Nữ</option>
+        </select></td>
+    </tr>
+    <tr>
+        <th>Lớp</th>
+        <td style="text-align: center"><input type="text" id="unput5" placeholder="C0922H1"></td>
+    </tr>
+    <tr>
+        <th>ảnh</th>
+        <td style="text-align: center"><input type="text" id="unput6" placeholder="https://vcdn1-dulich.vnecdn.net/2022/05/27/du-lich-Viet-Nam-3-1653637304.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=JTkFADdHoPj9uPujAqAv0w"></td>
+    </tr>
+    <tr>
+        <th></th>
+        <td style="text-align: center">
+            <button type="button" style="background-color: #5fe0f1" onclick="add()">Add</button>
+            <button type="button" style="background-color: #5fe0f1" onclick="upload()">Save</button>
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+<footer>
+    <div><p>
+        Bản quyền thuộc về Trường Đại học Mỏ - Địa chất.
+    </p>
+    </div>
+</footer>
+</body>
+</html>
+<script>
+    let luu_tru = []
+    let chan = document.getElementById("ca");
+    function add() {
+        let id = document.getElementById("unput1").value;
+        let ho_ten = document.getElementById("unput2").value;
+        let Ngay_sinh = document.getElementById("unput3").value;
+        let gioi_tinh = document.getElementById("unput4").value;
+        let lop = document.getElementById("unput5").value;
+        let img = document.getElementById("unput6").value;
+        luu_tru.push([id, ho_ten, Ngay_sinh, gioi_tinh, lop, img])
+        show()
+    }
+    function show() {
+        let str = "";
+        for (let i = 0; i < luu_tru.length; i++) {
+            str += `<tr>
+                        <td style="text-align: center">${luu_tru[i][0]}</td>
+                        <td style="text-align: center">${luu_tru[i][1]}</td>
+                        <td style="text-align: center">${luu_tru[i][2]}</td>
+                        <td style="text-align: center">${luu_tru[i][3]}</td>
+                        <td style="text-align: center">${luu_tru[i][4]}</td>
+                        <td style="text-align: center"><img src="${luu_tru[i][5]}" style="width: 100px"></td>
+                        <td style="text-align: center" ><button onclick="edit(${i})" >Edit</button> <button onclick="xoa(${i})">Delete</button></td>
+                        </tr>`
+        }
+        chan.innerHTML = str;
+    }
+    function xoa(i) {
+        luu_tru.splice(i, 1)
+        show()
+    }
+    function edit(i) {
+        document.getElementById("unput1").value = luu_tru[i][0]
+        document.getElementById("unput2").value = luu_tru[i][1]
+        document.getElementById("unput3").value = luu_tru[i][2]
+        document.getElementById("unput4").value = luu_tru[i][3]
+        document.getElementById("unput5").value = luu_tru[i][4]
+        document.getElementById("unput6").value = luu_tru[i][5]
+        // xoa(i)
+        // show(i)
+    }
+    function upload() {
+        let id = document.getElementById("unput1").value;
+        let ho_ten = document.getElementById("unput2").value;
+        let Ngay_sinh = document.getElementById("unput3").value;
+        let gioi_tinh = document.getElementById("unput4").value;
+        let lop = document.getElementById("unput5").value;
+        let img = document.getElementById("unput6").value;
+        for (let i = 0; i < luu_tru.length; i++) {
+            if (id == luu_tru[i][0]) {
+                luu_tru[i] = [id, ho_ten, Ngay_sinh, gioi_tinh, lop, img];
+                show();
+                return;
+            }
+        }
+        add();
+    }
+    function tuan() {
+        window.location="https://humg.edu.vn/Pages/home.aspx"
+    }
+    function linh() {
+        window.location.href="testtttt.html"
+    }
+
+</script>
