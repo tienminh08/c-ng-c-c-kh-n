@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body background="dangnhapd.png">
+
+
+<div align="center" id="hanh">
+    <table id="hai" border="1px" style="margin-top: 250px">
+        <tr>
+            <td colspan="2" style="text-align: center"><h2>Đăng nhập hệ thống</h2></td>
+        </tr>
+        <tr>
+            <td>Tài Khoản</td>
+            <td style="background-color: #5fe0f1"><input type="text" name="email" id="ip1" placeholder="daotao.humg@edu.com"></td>
+        </tr>
+        <tr>
+            <td>Mật khẩu</td>
+            <td style="background-color: #5fe0f1"><input type="password" id="ip2" placeholder="**********"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+
+
+            <td align="center">
+                <button onclick="nam()" style="background-color: #5fe0f1">Đăng nhập</button>
+            </td>
+            <!--                <button style="background-color: #5fe0f1" onclick="ha()">Đăng kí</button></td>-->
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
+<script>
+    let luu = ["mai", "123"]
+
+    function nam() {
+        let id = document.getElementById("ip1").value
+        let pas = document.getElementById("ip2").value
+        for (let i = 0; i < luu.length; i++) {
+            if (id === luu[0] && pas === luu[1]) {
+                alert("Đăng nhập thành công")
+                window.location = "index.html"
+                break
+            } else {
+                alert("Đăng nhập không thành công")
+                break
+            }
+        }
+    }
+
+</script>
+<!--<link rel="import" href="dangki.html">-->
